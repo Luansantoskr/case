@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use DateTime;
+use App\Models\Vacina;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\VacinaController;
+use App\Http\Controllers\ClienteController;
 
 class RegistroController extends Controller
 {
+    public function __construct()
+    {
+        $this->classe = Registro::class;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,7 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -34,7 +46,14 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $postObj = [
+            'id_cliente'=> $request->dado->cliente,
+            'id_vacina' => $request->vacinaId,
+            'date' => Carbon::parse($request->date)->format('Y-m-d'),
+        ];
+
+        return Response()->json([$this->classe::create($postObj),201]);
     }
 
     /**

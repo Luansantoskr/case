@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,17 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return Cliente::all();
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -25,18 +34,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required|min:3|max:100',
-            'cpf' => 'required',
-            'idade' => 'required',
-            'cep' => 'required',
-            'endereco' => 'required|min:5|max:200',
-            'numero' => 'required',
-            'bairro' => 'required',
-            'comorbidade' => 'required',
-        ]);
-
-        return Cliente::create($request->all());
+        //
     }
 
     /**
@@ -47,7 +45,18 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        return Cliente::findOrFail($id);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -59,10 +68,7 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cliente = Cliente::findOrFail($id);
-        $cliente->update($request->all());
-        return $cliente;
-
+        //
     }
 
     /**
@@ -73,8 +79,6 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        $cliente = Cliente::destroy($id);
-
-        return "cliente " . $cliente . " deletado com sucesso!";
+        //
     }
 }
