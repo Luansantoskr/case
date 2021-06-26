@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use DateTime;
 use App\Models\Vacina;
 use App\Models\Cliente;
+use App\Models\Registro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\View;
 use App\Http\Controllers\VacinaController;
+use Symfony\Component\Console\Input\Input;
 use App\Http\Controllers\ClienteController;
 
 class RegistroController extends Controller
 {
-    public function __construct()
+    public function __construct($id)
     {
-        $this->classe = Registro::class;
+
     }
 
     /**
@@ -25,17 +27,8 @@ class RegistroController extends Controller
      */
     public function index()
     {
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $registros = Registro::with('cliente')->get();
+        return View::make('clientes.index', compact('clientes'));
     }
 
     /**
@@ -47,13 +40,15 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
 
-        $postObj = [
-            'id_cliente'=> $request->dado->cliente,
-            'id_vacina' => $request->vacinaId,
-            'date' => Carbon::parse($request->date)->format('Y-m-d'),
-        ];
+        $registro = new Registro();
 
-        return Response()->json([$this->classe::create($postObj),201]);
+        $registro->cliente     = Input::get('nome');
+        $registro->vacina   = Input::get('fabricante');
+        $registro->data     = Input::get('data');;
+
+        $registro->save();
+
+        return $registro;
     }
 
     /**
@@ -64,7 +59,7 @@ class RegistroController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

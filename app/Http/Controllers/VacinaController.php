@@ -14,7 +14,7 @@ class VacinaController extends Controller
      */
     public function index()
     {
-        //
+        return Vacina::all();
     }
 
     /**
@@ -56,7 +56,10 @@ class VacinaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vacina = Vacina::findOrFail($id);
+        $vacina->update($request->all());
+
+        return "Vacina atualizada com sucesso!";
     }
 
     /**
@@ -67,6 +70,8 @@ class VacinaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vacina = Vacina::destroy($id);
+
+        return "cliente " . $vacina . " deletado com sucesso!";
     }
 }

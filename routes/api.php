@@ -6,6 +6,7 @@ use App\Http\Controllers\VacinaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RegistroController;
+use App\Models\RegistroCliente;
 use Facade\FlareClient\Http\Client;
 
 // Rotas abertas para receber os dados do cliente e vacinas.
@@ -23,8 +24,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/cliente/{id}', [ClienteController::class, 'destroy']);
     Route::post('/registro_cliente', [RegistroCliente::class, 'store']);
     Route::post('/registro', [RegistroController::class, 'store']);
-    Route::post('/vacinas', [VacinaController::class, 'store']);
-
+    Route::post('/vacina', [VacinaController::class, 'store']);
+    Route::put('/vacina/{id}', [VacinaController::class, 'update']);
+    Route::delete('/vacina/{id}', [VacinaController::class, 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
