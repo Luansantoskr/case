@@ -14,8 +14,13 @@ class RegistroCliente extends Model
         'id_vacina'
     ];
 
-    public function registros()
+    public function vacinado()
     {
-        return $this->belongsToMany(Registro::class, 'id_cliente', 'id_vacina');
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function vacina()
+    {
+        return $this->belongsTo(Vacina::class);
     }
 }

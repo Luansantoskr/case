@@ -27,8 +27,7 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        $registros = Registro::with('cliente')->get();
-        return View::make('clientes.index', compact('clientes'));
+        //
     }
 
     /**
@@ -40,15 +39,15 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
 
-        $registro = new Registro();
+        // $registro = new Registro();
 
-        $registro->cliente     = Input::get('nome');
-        $registro->vacina   = Input::get('fabricante');
-        $registro->data     = Input::get('data');;
+        // $registro->cliente     = Input::get('nome');
+        // $registro->vacina   = Input::get('fabricante');
+        // $registro->data     = Input::get('data');;
 
-        $registro->save();
+        // $registro->save();
 
-        return $registro;
+        // return $registro;
     }
 
     /**
