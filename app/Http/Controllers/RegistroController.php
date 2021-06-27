@@ -45,18 +45,34 @@ class RegistroController extends Controller
 
         if( $iden == 1){
             return Registro::create($request->all());
-        }elseif( $iden ==2 ){
+        }else{
+            return "Confira a data e veja se já está habilitado para tomar a segunda dose.";
+        }
+    }
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function segundaDose(Request $request)
+    {
+        $iden = $request->identificacao;
+
+        if( $iden == 2){
             $vacina = $request->vacina_id;
             $cont = $request->controle;
             $dataVacina = $request->data;
             $dataAtual = Carbon::now();
             $retorno = Carbon::createFromFormat("!Y-m-d", $dataVacina)->addDays($cont);
 
-             if ( $dataAtual < $retorno){
+             if( $dataAtual < $retorno){
                  return "Desculpe, mas você ainda não está habilitado para tomar a segunda dose";
              }elseif( $vacina ){
                  return Registro::create($request->all());
             }
+        }elseif( $iden > 2) {
+            return "Desculpe, mas você já tomou todas as doses necessárias!";
         }
     }
 

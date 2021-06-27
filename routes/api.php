@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/cliente', [ClienteController::class, 'store']);
     Route::put('/cliente/{id}', [ClienteController::class, 'update']);
     Route::delete('/cliente/{id}', [ClienteController::class, 'destroy']);
-    Route::post('/registro_cliente', [RegistroCliente::class, 'store']);
+    Route::post('/registro/segunda', [RegistroController::class, 'segundaDose']);
     Route::post('/registro', [RegistroController::class, 'store']);
     Route::post('/vacina', [VacinaController::class, 'store']);
     Route::put('/vacina/{id}', [VacinaController::class, 'update']);
