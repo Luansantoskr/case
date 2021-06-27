@@ -19,4 +19,9 @@ class Cliente extends Model
         'bairro',
         'comorbidade'
     ];
+
+    public function vacina()
+    {
+        return $this->belongsTo(Vacina::class);
+    }
 }

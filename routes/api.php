@@ -16,6 +16,7 @@ Route::get('/cliente', [ClienteController::class, 'index']);
 Route::get('/cliente/{id}', [ClienteController::class, 'show']);
 Route::get('/vacinas', [VacinaController::class, 'index']);
 Route::get('/vacinas/{id}', [VacinaController::class, 'show']);
+Route::get('registro/{id}', [RegistroController::class, 'show']);
 
 // Rotas protegidas, necessitam de login.
 Route::group(['middleware' => ['auth:sanctum']], function () {

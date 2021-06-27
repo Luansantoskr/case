@@ -20,8 +20,13 @@ class CreateVacinasTable extends Migration
             $table->string('validade');
             $table->integer('qtd');
             $table->string('intervalo');
+            //$table->unsignedBigInteger('id_cliente');
             $table->timestamps();
         });
+
+        // Schema::table('registro_clientes', function (Blueprint $table){
+        //     $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
+        // });
     }
 
     /**

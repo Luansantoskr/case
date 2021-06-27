@@ -12,12 +12,17 @@ class Registro extends Model
     use HasFactory;
 
     protected $fillable = [
-        'registro_clientes', 'id_cliente', 'id_vacina'
+        'data', 'cliente_id', 'vacina_id', 'identificacao', 'controle'
     ];
 
-    public function registros()
+    public function cliente()
     {
-        return $this->belongsToMany(RegistroCliente::class, 'registro_clientes', 'id_cliente', 'id_vacina');
+        return $this->hasOne(Cliente::class);
+    }
+
+    public function vacina()
+    {
+        return $this->hasOne(Vacina::class);
     }
 
 }

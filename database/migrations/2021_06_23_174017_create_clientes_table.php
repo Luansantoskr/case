@@ -25,6 +25,10 @@ class CreateClientesTable extends Migration
             $table->string('comorbidade');
             $table->timestamps();
         });
+
+        // Schema::table('clientes', function (Blueprint $table){
+        //     $table->foreign('id_vacina')->references('id')->on('vacinas')->onDelete('cascade');
+        // });
     }
 
     /**
