@@ -2,12 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VacinaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VacinaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\SegundaController;
 use App\Http\Controllers\RegistroController;
-use App\Models\RegistroCliente;
-use Facade\FlareClient\Http\Client;
 
 // Rotas abertas para receber os dados do cliente e vacinas.
 Route::post('/register', [AuthController::class, 'register']);
@@ -23,7 +22,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/cliente', [ClienteController::class, 'store']);
     Route::put('/cliente/{id}', [ClienteController::class, 'update']);
     Route::delete('/cliente/{id}', [ClienteController::class, 'destroy']);
-    Route::post('/registro/segunda', [RegistroController::class, 'segundaDose']);
+    Route::post('/segunda', [SegundaController::class, 'segundaDose']);
     Route::post('/registro', [RegistroController::class, 'store']);
     Route::post('/vacina', [VacinaController::class, 'store']);
     Route::put('/vacina/{id}', [VacinaController::class, 'update']);

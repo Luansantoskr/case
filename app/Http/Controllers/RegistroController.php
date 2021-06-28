@@ -36,44 +36,27 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'data' => 'required',
             'identificacao' => 'required',
             'controle' => 'required',
         ]);
+        $id = $request->cliente_id;
+        $cpf = Cliente::findOrFail($id)->cpf;
+
+        //  if( $cpf){
+        //      return "O portador do cpf " . $cpf . " já tomou a primeira dose";
+        //  }else{
 
         $iden = $request->identificacao;
 
         if( $iden == 1){
             return Registro::create($request->all());
-        }else{
-            return "Confira a data e veja se já está habilitado para tomar a segunda dose.";
+            }elseif( $iden == 2){
+                return "Confira a data e veja se já está habilitado para tomar a segunda dose.";
+        }elseif( $iden != 1 or 2){
+            return "Por favor, informe o número da identificação da dose válido. Sendo apenas 1 ou 2";
         }
-    }
-     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function segundaDose(Request $request)
-    {
-        $iden = $request->identificacao;
 
-        if( $iden == 2){
-            $vacina = $request->vacina_id;
-            $cont = $request->controle;
-            $dataVacina = $request->data;
-            $dataAtual = Carbon::now();
-            $retorno = Carbon::createFromFormat("!Y-m-d", $dataVacina)->addDays($cont);
 
-             if( $dataAtual < $retorno){
-                 return "Desculpe, mas você ainda não está habilitado para tomar a segunda dose";
-             }elseif( $vacina ){
-                 return Registro::create($request->all());
-            }
-        }elseif( $iden > 2) {
-            return "Desculpe, mas você já tomou todas as doses necessárias!";
-        }
     }
 
     /**
