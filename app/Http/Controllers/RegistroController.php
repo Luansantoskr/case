@@ -40,22 +40,18 @@ class RegistroController extends Controller
             'controle' => 'required',
         ]);
         $id = $request->cliente_id;
-        $cpf = Cliente::findOrFail($id)->cpf;
-
-        //  if( $cpf){
-        //      return "O portador do cpf " . $cpf . " já tomou a primeira dose";
-        //  }else{
+        // $cpf = Cliente::findOrFail($id)->cpf;
 
         $iden = $request->identificacao;
 
-        if( $iden == 1){
+
+        if($iden == 1){
             return Registro::create($request->all());
             }elseif( $iden == 2){
                 return "Confira a data e veja se já está habilitado para tomar a segunda dose.";
         }elseif( $iden != 1 or 2){
             return "Por favor, informe o número da identificação da dose válido. Sendo apenas 1 ou 2";
         }
-
 
     }
 

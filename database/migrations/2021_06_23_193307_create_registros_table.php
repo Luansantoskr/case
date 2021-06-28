@@ -16,7 +16,7 @@ class CreateRegistrosTable extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->increments('id');
             $table->date('data');
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('cliente_id')->unique();
             $table->unsignedBigInteger('vacina_id');
             $table->integer('identificacao');
             $table->string('controle');
