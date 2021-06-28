@@ -15,7 +15,7 @@ class CreateSegundasTable extends Migration
     {
         Schema::create('segundas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('cliente_id')->unique();
             $table->unsignedBigInteger('vacina_id');
             $table->date('data_segunda');
             $table->integer('identificacao');
