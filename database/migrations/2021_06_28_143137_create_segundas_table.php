@@ -18,7 +18,7 @@ class CreateSegundasTable extends Migration
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('vacina_id');
             $table->date('data_segunda');
-            $table->integer('identificacao')->unique();
+            $table->integer('identificacao');
             $table->timestamps();
         });
 
