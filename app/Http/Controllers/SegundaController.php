@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacina;
 use App\Models\Segunda;
 use App\Models\Registro;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class SegundaController extends Controller
              $cli = $request->cliente_id;
              $vacina = $request->vacina_id;
              $veriVacina = Registro::findOrFail($cli)->vacina_id;
-             $cont = Registro::findOrFail($cli)->controle;
+             $cont = Vacina::findOrFail($cli)->intervalo;
              $dataVacina = Registro::find($cli)->data;
              $dataAtual = Carbon::now();
              $retorno = Carbon::createFromFormat("!Y-m-d", $dataVacina)->addDays($cont);
