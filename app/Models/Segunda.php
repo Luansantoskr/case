@@ -11,8 +11,9 @@ class Segunda extends Model
 
     protected $fillable = [
         'cliente_id',
-        'vacina_vacina',
-        'data_segunda'
+        'vacina_id',
+        'data_segunda',
+        'identificacao'
     ];
 
     public function vacinado()

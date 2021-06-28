@@ -19,11 +19,16 @@ Route::get('registro/{id}', [RegistroController::class, 'show']);
 
 // Rotas protegidas, necessitam de login.
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Rotas privadas de cliente
     Route::post('/cliente', [ClienteController::class, 'store']);
     Route::put('/cliente/{id}', [ClienteController::class, 'update']);
     Route::delete('/cliente/{id}', [ClienteController::class, 'destroy']);
+    //Rotas privadas de registro
     Route::post('/segunda', [SegundaController::class, 'segundaDose']);
     Route::post('/registro', [RegistroController::class, 'store']);
+    Route::put('/registro/{id}', [RegistroController::class, 'update']);
+    Route::delete('/registro/{id}', [RegistroController::class, 'destroy']);
+    //Rotas privadas de vacina
     Route::post('/vacina', [VacinaController::class, 'store']);
     Route::put('/vacina/{id}', [VacinaController::class, 'update']);
     Route::delete('/vacina/{id}', [VacinaController::class, 'destroy']);

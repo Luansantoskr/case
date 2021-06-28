@@ -2,17 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
-use App\Models\Vacina;
-use App\Models\Cliente;
 use App\Models\Registro;
-use App\Models\RegistroCliente;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\View;
-use App\Http\Controllers\VacinaController;
-use Symfony\Component\Console\Input\Input;
-use App\Http\Controllers\ClienteController;
+
 
 class RegistroController extends Controller
 {
@@ -24,7 +16,7 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        //
+        return Registro::all();
     }
 
     /**
@@ -36,14 +28,12 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'data' => 'required',
             'identificacao' => 'required',
             'controle' => 'required',
         ]);
         $id = $request->cliente_id;
-        // $cpf = Cliente::findOrFail($id)->cpf;
-
         $iden = $request->identificacao;
-
 
         if($iden == 1){
             return Registro::create($request->all());
@@ -63,7 +53,7 @@ class RegistroController extends Controller
      */
     public function show($id)
     {
-        //
+        return Registro::findOrFail($id);
     }
 
     /**
@@ -75,7 +65,9 @@ class RegistroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $registro=Registro::findOrFail($id);
+        $registro->update($request->all());
+        return $registro;
     }
 
     /**
@@ -86,6 +78,7 @@ class RegistroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $registro = Registro::destroy($id);
+        return "Registro " . $registro . " deletado com sucesso";
     }
 }

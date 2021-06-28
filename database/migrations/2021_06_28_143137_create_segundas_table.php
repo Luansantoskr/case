@@ -13,16 +13,16 @@ class CreateSegundasTable extends Migration
      */
     public function up()
     {
-        Schema::create('segunda', function (Blueprint $table) {
+        Schema::create('segundas', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('vacina_id');
             $table->date('data_segunda');
-            $table->integer('identificacao');
+            $table->integer('identificacao')->unique();
             $table->timestamps();
         });
 
-        Schema::table('segunda', function (Blueprint $table){
+        Schema::table('segundas', function (Blueprint $table){
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->foreign('vacina_id')->references('id')->on('vacinas')->onDelete('cascade');
         });

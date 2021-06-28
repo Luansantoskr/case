@@ -48,7 +48,6 @@ class ClienteController extends Controller
     public function show($id)
     {
         $paciente = Cliente::findOrFail($id);
-
         return $paciente;
     }
 

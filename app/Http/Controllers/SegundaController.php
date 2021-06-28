@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vacina;
-use App\Models\Cliente;
 use App\Models\Segunda;
 use App\Models\Registro;
 use Illuminate\Http\Request;
@@ -38,15 +36,17 @@ class SegundaController extends Controller
 
               if( $dataAtual < $retorno){
                   return "Desculpe, mas você ainda não está habilitado para tomar a segunda dose. Você
-                  deverá voltar na data ". $retorno . "para a segunda dose";
+                  deverá voltar a partir da data ". $retorno . "para a segunda dose";
                     }elseif( $vacina != $veriVacina ){
                         return "A segunda dose da vacina deverá ser a mesma vacina aplicada na primeira dose.";
-                            }elseif( $iden != 1 or 2) {
-                                return "Desculpe, mas você já tomou todas as doses necessárias!";
-                                }else{
+                             }else{
                                     return Segunda::create($request->all());
                                 }
+
                     }
+                    if( $iden != 1 or 2) {
+                        return "Desculpe, mas você já tomou todas as doses necessárias!";
+                       }
                 }
             }
         }
